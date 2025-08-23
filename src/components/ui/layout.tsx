@@ -34,6 +34,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import type { Customer } from "@/data/schema";
 import { db } from "@/data/database";
 import { buildColumnsFromTable } from "@/lib/table-columns";
+import { Button } from "@/components/ui/button";
 
 // Menu items.
 const items = [
@@ -152,9 +153,22 @@ function Layout(): React.JSX.Element {
         <div className='flex-1 overflow-hidden'>
           <div className='p-3.5 h-full flex flex-col gap-4'>
             <section className='min-h-0 flex-[0_0_40%]'>
-              <div className='h-full rounded-lg border p-4'>
-                <div className='font-medium mb-2'>Section 1</div>
-                <p className='text-sm text-muted-foreground'>1</p>
+              <div className='h-full rounded-lg border p-4 flex flex-col min-h-0'>
+                <div className='shrink-0 pb-2 font-medium'>
+                  <Input type='text' placeholder='Query Name' />
+                </div>
+                <div className='flex-1 min-h-0 mt-2'>
+                  <textarea
+                    className='w-full h-full resize-none rounded-md border p-2 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50'
+                    placeholder='Write your SQL here...'
+                  />
+                </div>
+                <div className='shrink-0 pt-2 flex items-center justify-end gap-2'>
+                  <Button variant='outline' size='sm'>
+                    Save Query
+                  </Button>
+                  <Button size='sm'>Execute Query</Button>
+                </div>
               </div>
             </section>
             <section className='min-h-0 flex-[0_0_60%]'>
