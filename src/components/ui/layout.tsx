@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import {
   Calendar,
@@ -74,81 +75,75 @@ const customerColumns: ColumnDef<Customer>[] =
 
 function Layout(): React.JSX.Element {
   return (
-    <div className='h-screen flex md:flex-row flex-col'>
-      <aside className='hidden md:block h-full'>
-        <SidebarProvider>
-          <Sidebar>
-            <SidebarContent>
-              <SidebarGroup>
-                <Select defaultValue='light'>
-                  <SelectTrigger className='w-full'>
-                    <SelectValue placeholder='Theme' />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value='light'>
-                      <Database /> Light
-                    </SelectItem>
-                    <SelectItem value='dark'>
-                      <Database /> Dark
-                    </SelectItem>
-                    <SelectItem value='system'>
-                      <Database /> System
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                <Input
-                  type='text'
-                  placeholder='Search schema'
-                  className='my-4'
-                />
-                <ScrollArea className='h-72 w-full rounded-md'>
-                  <div className='p-4'>
-                    {tags.map((tag) => (
-                      <React.Fragment key={tag}>
-                        <div className='text-sm flex justify-start items-center'>
-                          <Sheet size={16} className='pr-1' />
-                          {tag}
-                        </div>
-                        <Separator className='my-2' />
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </ScrollArea>
-              </SidebarGroup>
-              <Separator />
-              <SidebarGroup>
-                <SidebarGroupLabel>Recent Queries</SidebarGroupLabel>
-                <ScrollArea className='w-full rounded-md'>
-                  <SidebarMenu>
-                    {items.map((item) => (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton>{item.title}</SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </SidebarMenu>
-                </ScrollArea>
-              </SidebarGroup>
-              <Separator />
-              <SidebarGroup>
-                <SidebarGroupLabel>Saved Queries</SidebarGroupLabel>
-                <ScrollArea className='w-full rounded-md'>
-                  <SidebarMenu>
-                    {items.map((item) => (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton>{item.title}</SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </SidebarMenu>
-                </ScrollArea>
-              </SidebarGroup>
-            </SidebarContent>
-            <SidebarFooter />
-          </Sidebar>
-        </SidebarProvider>
-      </aside>
+    <SidebarProvider>
+      <Sidebar collapsible='offcanvas'>
+        <SidebarContent>
+          <SidebarGroup>
+            <Select defaultValue='light'>
+              <SelectTrigger className='w-full'>
+                <SelectValue placeholder='Theme' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='light'>
+                  <Database /> Light
+                </SelectItem>
+                <SelectItem value='dark'>
+                  <Database /> Dark
+                </SelectItem>
+                <SelectItem value='system'>
+                  <Database /> System
+                </SelectItem>
+              </SelectContent>
+            </Select>
+            <Input type='text' placeholder='Search schema' className='my-4' />
+            <ScrollArea className='h-72 w-full rounded-md'>
+              <div className='p-4'>
+                {tags.map((tag) => (
+                  <React.Fragment key={tag}>
+                    <div className='text-sm flex justify-start items-center'>
+                      <Sheet size={16} className='pr-1' />
+                      {tag}
+                    </div>
+                    <Separator className='my-2' />
+                  </React.Fragment>
+                ))}
+              </div>
+            </ScrollArea>
+          </SidebarGroup>
+          <Separator />
+          <SidebarGroup>
+            <SidebarGroupLabel>Recent Queries</SidebarGroupLabel>
+            <ScrollArea className='w-full rounded-md'>
+              <SidebarMenu>
+                {items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton>{item.title}</SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </ScrollArea>
+          </SidebarGroup>
+          <Separator />
+          <SidebarGroup>
+            <SidebarGroupLabel>Saved Queries</SidebarGroupLabel>
+            <ScrollArea className='w-full rounded-md'>
+              <SidebarMenu>
+                {items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton>{item.title}</SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </ScrollArea>
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarFooter />
+      </Sidebar>
       <main className='w-full md:w-full h-full flex flex-col overflow-hidden'>
         <div className='p-4.5 border-b flex items-center justify-between'>
-          <div className='font-semibold text-lg' />
+          <div className='font-semibold text-lg'>
+            <SidebarTrigger className='md:hidden' />
+          </div>
         </div>
         <div className='flex-1 overflow-hidden'>
           <div className='p-3.5 h-full flex flex-col gap-4'>
@@ -189,7 +184,7 @@ function Layout(): React.JSX.Element {
           </div>
         </div>
       </main>
-    </div>
+    </SidebarProvider>
   );
 }
 
