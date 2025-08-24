@@ -2,14 +2,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { DataTable } from "@/components/ui/data-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Loader2Icon } from "lucide-react";
+import ExportData from "@/views/export-data";
 
 function QueryResults({
   data,
@@ -63,17 +57,11 @@ function QueryResults({
 
   return (
     <div className='h-full rounded-lg border p-4 flex flex-col min-h-0'>
-      <div className='shrink-0 pb-2 font-medium flex flex-row items-center justify-between text-green-500'>
-        {rowCount} rows in {executionTime}ms
-        <Select>
-          <SelectTrigger className='w-[180px]'>
-            <SelectValue placeholder='Export data' />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value='json'>json</SelectItem>
-            <SelectItem value='csv'>csv</SelectItem>
-          </SelectContent>
-        </Select>
+      <div className='shrink-0 pb-2 font-medium flex flex-row items-center justify-between'>
+        <p className='text-green-500'>
+          {rowCount} rows in {executionTime}ms
+        </p>
+        <ExportData data={data} columns={columns} />
       </div>
       <ScrollArea className='flex-1 min-h-0 rounded-md border mt-2'>
         <div className='min-w-max p-2'>
