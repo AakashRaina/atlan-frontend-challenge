@@ -146,8 +146,8 @@ function Layout(): React.JSX.Element {
           </div>
         </div>
         <div className='flex-1 overflow-hidden'>
-          <div className='p-3.5 h-full flex flex-col gap-4'>
-            <section className='min-h-0 flex-[0_0_40%]'>
+          <div className='p-3.5 h-full flex flex-col gap-2'>
+            <section className='min-h-0 h-[calc(50vh-0.25rem)] flex-none'>
               <div className='h-full rounded-lg border p-4 flex flex-col min-h-0'>
                 <div className='shrink-0 pb-2 font-medium'>
                   <Input type='text' placeholder='Query Name' />
@@ -166,7 +166,7 @@ function Layout(): React.JSX.Element {
                 </div>
               </div>
             </section>
-            <section className='min-h-0 flex-[0_0_60%]'>
+            <section className='min-h-0 h-[calc(50vh-0.25rem)] flex-none'>
               <div className='h-full rounded-lg border p-4 flex flex-col min-h-0'>
                 <div className='shrink-0 border-b pb-2 font-medium'>
                   Customers
