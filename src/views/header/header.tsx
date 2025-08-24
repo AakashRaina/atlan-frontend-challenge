@@ -18,13 +18,9 @@ function Header(): React.JSX.Element {
         <SidebarTrigger className='md:hidden' />
       </div>
       <div className='flex gap-2 justify-start'>
-        <Button
-          variant='secondary'
-          size='icon'
-          className='size-8'
-          onClick={handleNewQuery}
-        >
+        <Button variant='secondary' onClick={handleNewQuery}>
           <Plus />
+          New Query
         </Button>
       </div>
     </div>
