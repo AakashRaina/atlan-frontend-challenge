@@ -14,10 +14,10 @@ function QueryResults(): React.JSX.Element {
       <div className='shrink-0 border-b pb-2 font-medium'>Customers</div>
       <ScrollArea className='flex-1 min-h-0 rounded-md border mt-2'>
         <div className='min-w-max p-2'>
-          <DataTable<Customer, unknown>
+          {/* <DataTable<Customer, unknown>
             columns={customerColumns}
             data={db.customers}
-          />
+          /> */}
         </div>
       </ScrollArea>
     </div>

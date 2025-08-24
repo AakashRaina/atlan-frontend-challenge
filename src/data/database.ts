@@ -20,6 +20,43 @@ const priceFromIndex = (i: number): number =>
   parseFloat(((((i * 97) % 3000) + 200) / 100).toFixed(2));
 const stockFromIndex = (i: number): number => (i * 13) % 201;
 
+export type DatabaseInfo = {
+  id: string;
+  name: string;
+  description: string;
+  type: "PostgreSQL" | "MySQL" | "SQLite";
+  environment: "production" | "staging" | "development";
+  tableCount: number;
+  size: string;
+  lastUpdated: string;
+  tables: string[];
+};
+
+export const availableDatabases: DatabaseInfo[] = [
+  {
+    id: "app-staging",
+    name: "Staging",
+    description: "Staging environment for testing new features",
+    type: "PostgreSQL",
+    environment: "staging",
+    tableCount: 4,
+    size: "1.8 MB",
+    lastUpdated: "2024-01-14T16:45:00Z",
+    tables: ["suppliers", "shippers", "regions", "order_items"],
+  },
+  {
+    id: "app-prod",
+    name: "Production",
+    description: "Production e-commerce database with live customer data",
+    type: "PostgreSQL",
+    environment: "production",
+    tableCount: 4,
+    size: "2.4 MB",
+    lastUpdated: "2024-01-15T10:30:00Z",
+    tables: ["customers", "orders", "products", "categories"],
+  },
+];
+
 // Seed vocabularies for mock data generation
 const regionNames = [
   "North-East",
@@ -371,13 +408,12 @@ export const order_items: OrderItem[] = (() => {
   return rows;
 })();
 
-export const db: Database = {
-  regions,
-  customers,
-  shippers,
-  suppliers,
-  categories,
-  products,
-  orders,
-  order_items,
-};
+// Helper functions
+export function getDatabaseById(id: string): DatabaseInfo | undefined {
+  return availableDatabases.find((db) => db.id === id);
+}
+
+export function getTablesByDatabase(databaseId: string): string[] {
+  const database = getDatabaseById(databaseId);
+  return database ? database.tables : [];
+}
