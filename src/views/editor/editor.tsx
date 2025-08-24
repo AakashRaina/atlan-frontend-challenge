@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Save, Play } from "lucide-react";
+import { Save, Play, Loader2Icon } from "lucide-react";
 
 function Editor({
   id,
@@ -8,12 +8,14 @@ function Editor({
   setQuery,
   handleSave,
   handleRun,
+  isLoading,
 }: {
   id: string;
   query: string;
   setQuery: (query: string) => void;
   handleSave: () => void;
   handleRun: () => void;
+  isLoading: boolean;
 }): React.JSX.Element {
   return (
     <div className='h-full rounded-lg border p-4 flex flex-col min-h-0'>
@@ -34,11 +36,20 @@ function Editor({
         />
       </div>
       <div className='shrink-0 pt-2 flex items-center justify-end gap-2'>
-        <Button variant='outline' size='sm' onClick={handleSave}>
+        <Button
+          variant='outline'
+          size='sm'
+          onClick={handleSave}
+          disabled={isLoading}
+        >
           <Save />
         </Button>
-        <Button size='sm' disabled={query.length <= 10} onClick={handleRun}>
-          <Play />
+        <Button
+          size='sm'
+          disabled={query.length <= 10 || isLoading}
+          onClick={handleRun}
+        >
+          {isLoading ? <Loader2Icon className='animate-spin' /> : <Play />}
           Run
         </Button>
       </div>

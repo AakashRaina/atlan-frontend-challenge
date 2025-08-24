@@ -16,10 +16,13 @@ function Query(): React.JSX.Element {
       }
     | undefined
   >(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchQueryResults = async () => {
+    setIsLoading(true);
     const results = await executeQuery(query);
     setQueryResults(results);
+    setIsLoading(false);
   };
 
   const handleSave = () => {
@@ -39,6 +42,7 @@ function Query(): React.JSX.Element {
           setQuery={setQuery}
           handleSave={handleSave}
           handleRun={handleRun}
+          isLoading={isLoading}
         />
       </section>
       <section className='min-h-0 h-[calc(50vh-0.25rem)] flex-none'>
@@ -47,6 +51,7 @@ function Query(): React.JSX.Element {
           columns={queryResults?.columns}
           rowCount={queryResults?.rowCount}
           executionTime={queryResults?.executionTime}
+          isLoading={isLoading}
         />
       </section>
     </div>
