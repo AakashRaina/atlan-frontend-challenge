@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-function Editor(): React.JSX.Element {
+function Editor({ id }: { id: string }): React.JSX.Element {
   return (
     <div className='h-full rounded-lg border p-4 flex flex-col min-h-0'>
       <div className='shrink-0 pb-2 font-medium'>
-        <Input type='text' placeholder='Query Name' />
+        <Input type='text' placeholder='Query Name' value={id} />
       </div>
       <div className='flex-1 min-h-0 mt-2'>
         <textarea
