@@ -11,4 +11,22 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (
+            id.includes("react-router") ||
+            id.includes("react") ||
+            id.includes("react-dom") ||
+            id.includes("lucide-react")
+          ) {
+            return "@vendor";
+          }
+
+          return null;
+        },
+      },
+    },
+  },
 });
