@@ -1,5 +1,5 @@
 import "./App.css";
-import Layout from "@/components/ui/layout";
+import Layout from "@/views/layout";
 
 function App(): React.JSX.Element {
   return <Layout />;
