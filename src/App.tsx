@@ -1,18 +1,22 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router";
+import { lazy, Suspense } from "react";
 import Layout from "@/views/layout";
 import Home from "@/views/home";
-import Query from "@/views/query";
+
+const Query = lazy(() => import("@/views/query"));
 
 function App(): React.JSX.Element {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path=':id' element={<Query />} />
-        </Route>
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path=':id' element={<Query />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
