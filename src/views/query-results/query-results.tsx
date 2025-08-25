@@ -1,4 +1,4 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { DataTable } from "@/components/ui/data-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
@@ -69,6 +69,7 @@ function QueryResults({
       <ScrollArea className='flex-1 min-h-0 rounded-md border mt-2'>
         <div className='min-w-max p-2'>
           <DataTable columns={tableColumns} data={data} />
+          <ScrollBar orientation='horizontal' />
         </div>
       </ScrollArea>
     </div>
