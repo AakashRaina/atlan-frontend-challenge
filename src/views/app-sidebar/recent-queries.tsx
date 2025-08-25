@@ -32,7 +32,7 @@ function RecentQueries(): React.JSX.Element {
   return (
     <>
       <SidebarGroupLabel>Recent Queries</SidebarGroupLabel>
-      <ScrollArea className='w-full rounded-md'>
+      <ScrollArea className='w-full rounded-md max-h-52'>
         <SidebarMenu>
           {recentQueries.map((query: Query) => (
             <SidebarMenuItem key={query.id} className='flex justify-between'>

@@ -67,7 +67,7 @@ function DataSource(): React.JSX.Element {
         />
       </div>
 
-      <ScrollArea className='h-72 w-full rounded-md'>
+      <ScrollArea className='h-45 w-full rounded-md'>
         <div>
           {tables.length === 0 ? (
             <div className='text-sm text-muted-foreground text-center py-4'>
