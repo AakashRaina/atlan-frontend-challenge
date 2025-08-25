@@ -15,7 +15,8 @@ const useAppStore = create<{
   updateRecentQueries: (query: Query) => void;
   removeFromRecentQueries: (queryId: string) => void;
   updateQueryName: (queryId: string, name: string) => void;
-  updateQueryQuery: (queryId: string, query: string | null) => void;
+  updateQueryString: (queryId: string, query: string | null) => void;
+  updateQueryResults: (queryId: string, results: any) => void;
 }>((set) => ({
   recentQueries: [],
   updateRecentQueries: (query: Query) =>
@@ -30,10 +31,24 @@ const useAppStore = create<{
         q.id === queryId ? { ...q, name } : q
       ),
     })),
-  updateQueryQuery: (queryId: string, query: string | null) =>
+  updateQueryString: (queryId: string, query: string | null) =>
     set((state) => ({
       recentQueries: state.recentQueries.map((q) =>
         q.id === queryId ? { ...q, query } : q
+      ),
+    })),
+  updateQueryResults: (queryId: string, results: any) =>
+    set((state) => ({
+      recentQueries: state.recentQueries.map((q) =>
+        q.id === queryId
+          ? {
+              ...q,
+              data: results.data,
+              columns: results.columns,
+              rowCount: results.rowCount,
+              executionTime: results.executionTime,
+            }
+          : q
       ),
     })),
 }));

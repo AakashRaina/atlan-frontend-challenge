@@ -29,7 +29,7 @@ function RecentQueries(): React.JSX.Element {
                 }}
                 className='justify-between'
               >
-                {query.name || query.id || "Untitled"}
+                {query.name || "Untitled"}
                 <Trash
                   className='w-4 h-4'
                   onClick={() => {

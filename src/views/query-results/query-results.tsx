@@ -4,20 +4,23 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { Loader2Icon } from "lucide-react";
 import ExportData from "@/views/export-data";
+import useAppStore from "@/store";
+import { useParams } from "react-router";
 
 function QueryResults({
-  data,
-  columns,
-  rowCount,
-  executionTime,
   isLoading,
 }: {
-  data?: any[];
-  columns?: string[];
-  rowCount?: number;
-  executionTime?: number;
   isLoading?: boolean;
 }): React.JSX.Element {
+  const { id } = useParams();
+  const queryDetails = useAppStore((state) =>
+    state.recentQueries.find((q) => q.id === id)
+  );
+  const data = queryDetails?.data;
+  const columns = queryDetails?.columns;
+  const rowCount = queryDetails?.rowCount;
+  const executionTime = queryDetails?.executionTime;
+
   const tableColumns = useMemo(() => {
     if (!columns) return [];
 
