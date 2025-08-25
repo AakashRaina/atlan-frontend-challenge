@@ -4,6 +4,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarGroupLabel,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import useAppStore, { Query } from "@/store";
 import { useNavigate } from "react-router";
@@ -15,6 +16,18 @@ function RecentQueries(): React.JSX.Element {
     (state) => state.removeFromRecentQueries
   );
   const navigate = useNavigate();
+  const { setOpenMobile } = useSidebar();
+
+  const handleRemoveQuery = (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>,
+    queryId: string
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    removeFromRecentQueries(queryId);
+    navigate("/");
+    setOpenMobile(false);
+  };
 
   return (
     <>
@@ -26,6 +39,7 @@ function RecentQueries(): React.JSX.Element {
               <SidebarMenuButton
                 onClick={() => {
                   navigate(`/${query.id}`);
+                  setOpenMobile(false);
                 }}
                 className='justify-between'
               >
@@ -33,10 +47,7 @@ function RecentQueries(): React.JSX.Element {
                 <Trash
                   className='w-4 h-4'
                   onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    removeFromRecentQueries(query.id);
-                    navigate("/");
+                    handleRemoveQuery(e, query.id);
                   }}
                 />
               </SidebarMenuButton>
