@@ -32,7 +32,9 @@ function RecentQueries(): React.JSX.Element {
                 {query.name || "Untitled"}
                 <Trash
                   className='w-4 h-4'
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     removeFromRecentQueries(query.id);
                     navigate("/");
                   }}
