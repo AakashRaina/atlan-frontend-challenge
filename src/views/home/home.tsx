@@ -3,12 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Database, Play, Save, History } from "lucide-react";
 import { useNavigate } from "react-router";
 import { makeId } from "@/lib/utils";
+import useAppStore, { Query } from "@/store";
 
 function Home(): React.JSX.Element {
   const navigate = useNavigate();
+  const updateRecentQueries = useAppStore((state) => state.updateRecentQueries);
 
   const handleStartWriting = () => {
     const newId = makeId();
+    const newQuery: Query = {
+      id: newId,
+      name: null,
+      query: null,
+      data: null,
+      columns: null,
+      rowCount: null,
+      executionTime: null,
+    };
+    updateRecentQueries(newQuery);
     navigate(`/${newId}`);
   };
 
@@ -54,8 +66,8 @@ function Home(): React.JSX.Element {
         </div>
 
         <div className='space-y-4 mt-12'>
-          <Button 
-            size='lg' 
+          <Button
+            size='lg'
             className='text-lg px-8 py-3'
             onClick={handleStartWriting}
           >

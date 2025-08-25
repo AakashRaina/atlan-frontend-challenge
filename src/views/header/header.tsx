@@ -3,12 +3,24 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router";
 import { makeId } from "@/lib/utils";
+import useAppStore, { Query } from "@/store";
 
 function Header(): React.JSX.Element {
   const navigate = useNavigate();
+  const updateRecentQueries = useAppStore((state) => state.updateRecentQueries);
 
   const handleNewQuery = () => {
     const newId = makeId();
+    const newQuery: Query = {
+      id: newId,
+      name: null,
+      query: null,
+      data: null,
+      columns: null,
+      rowCount: null,
+      executionTime: null,
+    };
+    updateRecentQueries(newQuery);
     navigate(`/${newId}`);
   };
 
