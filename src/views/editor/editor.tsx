@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useAppStore from "@/store";
-import { Save, Play, Loader2Icon } from "lucide-react";
+import { Play, Loader2Icon, Star, StarIcon } from "lucide-react";
 import { useParams } from "react-router";
 
 function Editor({
@@ -14,6 +14,7 @@ function Editor({
   const { id } = useParams();
   const updateQueryName = useAppStore((state) => state.updateQueryName);
   const updateQueryString = useAppStore((state) => state.updateQueryString);
+  const toggleFavorite = useAppStore((state) => state.toggleFavorite);
 
   const queryDetails = useAppStore((state) =>
     state.recentQueries.find((q) => q.id === id)
@@ -51,10 +52,13 @@ function Editor({
         <Button
           variant='outline'
           size='sm'
-          // onClick={handleSave}
+          onClick={() => toggleFavorite(id as string)}
           disabled={isLoading}
         >
-          <Save />
+          {queryDetails?.isFavorite ? <StarIcon fill='black' /> : <Star />}
+          {queryDetails?.isFavorite
+            ? "Remove from favorites"
+            : "Mark as favorite"}
         </Button>
         <Button
           size='sm'

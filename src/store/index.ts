@@ -9,6 +9,7 @@ export interface Query {
   columns: string[] | null;
   rowCount: number | null;
   executionTime: number | null;
+  isFavorite: boolean;
 }
 
 interface AppState {
@@ -18,6 +19,7 @@ interface AppState {
   updateQueryName: (queryId: string, name: string) => void;
   updateQueryString: (queryId: string, query: string | null) => void;
   updateQueryResults: (queryId: string, results: any) => void;
+  toggleFavorite: (queryId: string) => void;
 }
 
 const useAppStore = create<AppState>()(
@@ -54,6 +56,12 @@ const useAppStore = create<AppState>()(
                   executionTime: results.executionTime,
                 }
               : q
+          ),
+        })),
+      toggleFavorite: (queryId: string) =>
+        set((state) => ({
+          recentQueries: state.recentQueries.map((q) =>
+            q.id === queryId ? { ...q, isFavorite: !q.isFavorite } : q
           ),
         })),
     }),
