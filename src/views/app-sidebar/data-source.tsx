@@ -60,7 +60,7 @@ function DataSource(): React.JSX.Element {
 
       <div className='my-4 space-y-2'>
         <Input
-          type='text'
+          type='search'
           placeholder='Search schema'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
