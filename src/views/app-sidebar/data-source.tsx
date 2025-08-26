@@ -41,16 +41,21 @@ function DataSource(): React.JSX.Element {
   return (
     <>
       <Select value={selectedDatabase} onValueChange={handleDatabaseChange}>
-        <SelectTrigger className='w-full'>
-          <SelectValue placeholder='Select Database' />
+        <SelectTrigger className='w-full' aria-label='Select Data Source'>
+          <SelectValue
+            placeholder='Select Database'
+            aria-label='Select Database'
+          />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent aria-label='Select Database'>
           {availableDatabases.map((db) => (
-            <SelectItem key={db.id} value={db.id}>
+            <SelectItem key={db.id} value={db.id} aria-label={db.name}>
               <div className='flex items-center gap-2 w-full'>
                 <Database size={14} />
-                <div className='flex flex-col items-start'>
-                  <span className='text-sm'>{db.name}</span>
+                <div className='flex flex-col items-start' aria-label={db.name}>
+                  <span className='text-sm' aria-label={db.name}>
+                    {db.name}
+                  </span>
                 </div>
               </div>
             </SelectItem>
