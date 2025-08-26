@@ -19,6 +19,7 @@ function Header(): React.JSX.Element {
       columns: null,
       rowCount: null,
       executionTime: null,
+      isFavorite: false,
     };
     updateRecentQueries(newQuery);
     navigate(`/${newId}`);

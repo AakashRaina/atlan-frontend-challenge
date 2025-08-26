@@ -9,7 +9,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -54,18 +53,18 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
-                              {row.getVisibleCells().map((cell) => {
-                const cellValue = cell.getValue();
-                const displayValue = isDateTimeValue(cellValue) 
-                  ? autoFormatDateTime(cellValue)
-                  : flexRender(cell.column.columnDef.cell, cell.getContext());
-                  
-                return (
-                  <TableCell key={cell.id} className='text-center'>
-                    {displayValue}
-                  </TableCell>
-                );
-              })}
+                {row.getVisibleCells().map((cell) => {
+                  const cellValue = cell.getValue();
+                  const displayValue = isDateTimeValue(cellValue)
+                    ? autoFormatDateTime(cellValue)
+                    : flexRender(cell.column.columnDef.cell, cell.getContext());
+
+                  return (
+                    <TableCell key={cell.id} className='text-center'>
+                      {displayValue}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>

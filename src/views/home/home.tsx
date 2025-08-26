@@ -16,6 +16,7 @@ function Home(): React.JSX.Element {
       name: null,
       query: null,
       data: null,
+      isFavorite: false,
       columns: null,
       rowCount: null,
       executionTime: null,
