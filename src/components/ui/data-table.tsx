@@ -52,11 +52,18 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='text-center'>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+                {row.getVisibleCells().map((cell) => {
+                  const displayValue = flexRender(
+                    cell.column.columnDef.cell,
+                    cell.getContext()
+                  );
+
+                  return (
+                    <TableCell key={cell.id} className='text-center'>
+                      {displayValue}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
