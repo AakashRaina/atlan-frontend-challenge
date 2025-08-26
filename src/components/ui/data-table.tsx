@@ -9,10 +9,12 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { autoFormatDateTime, isDateTimeValue } from "@/lib/datetime-utils";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -52,11 +54,18 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
+                              {row.getVisibleCells().map((cell) => {
+                const cellValue = cell.getValue();
+                const displayValue = isDateTimeValue(cellValue) 
+                  ? autoFormatDateTime(cellValue)
+                  : flexRender(cell.column.columnDef.cell, cell.getContext());
+                  
+                return (
                   <TableCell key={cell.id} className='text-center'>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {displayValue}
                   </TableCell>
-                ))}
+                );
+              })}
               </TableRow>
             ))}
           </TableBody>
