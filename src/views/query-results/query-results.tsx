@@ -66,12 +66,9 @@ function QueryResults({
         </p>
         <ExportData data={data} columns={columns} />
       </div>
-      <ScrollArea className='flex-1 min-h-0 rounded-md border mt-2'>
-        <div className='min-w-max p-2'>
-          <DataTable columns={tableColumns} data={data} />
-          <ScrollBar orientation='horizontal' />
-        </div>
-      </ScrollArea>
+      <div className='flex-1 min-h-0'>
+        <DataTable columns={tableColumns} data={data} />
+      </div>
     </div>
   );
 }
