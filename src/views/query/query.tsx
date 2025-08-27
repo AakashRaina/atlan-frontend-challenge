@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import Editor from "@/views/editor";
 import QueryResults from "@/views/query-results";
-import { executeQuery } from "@/lib/query-executor";
+import { executeQuery } from "@/lib/query";
 import useAppStore from "@/store";
 
 function Query(): React.JSX.Element {

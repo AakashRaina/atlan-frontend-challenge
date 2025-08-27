@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { autoFormatDateTime, isDateTimeValue } from "@/lib/datetime-utils";
+import { autoFormatDateTime, isDateTimeValue } from "@/lib/datetime";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];

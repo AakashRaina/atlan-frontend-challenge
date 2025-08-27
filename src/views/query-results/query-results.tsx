@@ -14,7 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { paginateData, generatePageNumbers } from "@/lib/pagination-utils";
+import { paginateData, generatePageNumbers } from "@/lib/pagination";
 
 function QueryResults({
   isLoading,

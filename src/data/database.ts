@@ -14,7 +14,7 @@ import type {
 // Database shape for the mock data rows
 export type Database = { [K in keyof RowTypes]: RowTypes[K][] };
 
-import { addDays, toISO } from "@/lib/database-utils";
+import { addDays, toISO } from "@/lib/database";
 const idxPick = <T>(arr: T[], index: number): T => arr[index % arr.length];
 const priceFromIndex = (i: number): number =>
   parseFloat(((((i * 97) % 3000) + 200) / 100).toFixed(2));
