@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Database, Play, Save, History } from "lucide-react";
 import { useNavigate } from "react-router";
-import { makeId } from "@/lib/utils";
+import { makeId } from "@/lib/common";
 import useAppStore, { Query } from "@/store";
 
 function Home(): React.JSX.Element {

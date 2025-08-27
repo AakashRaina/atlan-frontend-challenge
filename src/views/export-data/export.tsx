@@ -5,7 +5,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { convertToCSV, downloadCSV } from "@/lib/utils";
+import { convertToCSV, downloadCSV } from "@/lib/common";
 
 interface ExportDataProps {
   data?: any[];

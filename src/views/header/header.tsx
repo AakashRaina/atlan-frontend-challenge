@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router";
-import { makeId } from "@/lib/utils";
+import { makeId } from "@/lib/common";
 import useAppStore, { Query } from "@/store";
 
 function Header(): React.JSX.Element {
