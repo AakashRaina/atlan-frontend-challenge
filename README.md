@@ -1,10 +1,10 @@
 # SQL Query Tool - Atlan Frontend Challenge
 
-## 🚀 App Overview
+## 🚀 Demo
 
-This SQL query tool is designed to streamline database interactions through a clean, efficient interface. Users can write SQL queries, execute them against sample datasets, view results in organized tables, and manage their query history - all within a single, unified platform.
+🌐 **Live Application**: [https://aakashraina-atlan-challenge.netlify.app/](https://aakashraina-atlan-challenge.netlify.app/)
 
-The application focuses on providing a professional-grade query experience with features commonly found in enterprise database tools, while maintaining simplicity and ease of use.
+🎥 **Video Demo**: [https://www.youtube.com/watch?v=jt9o_5uuYR8](https://www.youtube.com/watch?v=jt9o_5uuYR8)
 
 ## 🛠 Technology Stack
 
