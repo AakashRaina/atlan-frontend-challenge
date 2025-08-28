@@ -11,11 +11,49 @@
 - **Frontend Framework:** React 18 with TypeScript
 - **Build Tool:** Vite for fast development and building
 - **Styling:** Tailwind CSS with custom components
-- **UI Components:** Custom component library with shadcn/ui(Headless UI)
+- **UI Components:** Custom component library with shadcn/ui(`Headless UI`)
 - **State Management:** Zustand for lightweight state management
 - **Routing:** React Router for navigation
 - **Table Management:** TanStack Table for advanced data grid functionality
-- **Icons:** Lucide React for consistent iconography
+- **Icons:** Lucide React for iconography
+
+## 🏗️ Codebase Details
+
+### 📁 Project Structure
+
+```
+src/
+├── components/ui/          # Reusable UI components (shadcn/ui)
+│   ├── button.tsx         # Button component with variants
+│   ├── data-table.tsx     # Advanced table with sorting, pagination
+│   ├── input.tsx          # Form input components
+│   ├── table.tsx          # Base table components
+│   └── ...
+├── data/                  # Mock database and schema
+│   ├── database.ts        # Mock data for all tables
+│   └── schema.ts          # Database schema definitions
+├── hooks/                 # Custom React hooks
+│   └── use-mobile.ts      # Mobile detection hook
+├── lib/                   # Utility functions and helpers
+│   ├── common.ts          # General utilities (cn, CSV export)
+│   ├── database.ts        # Database utilities
+│   ├── datetime.ts        # Date/time formatting
+│   ├── pagination.ts      # Pagination logic
+│   ├── query.ts           # SQL query execution
+│   ├── table.ts           # Table column generation
+│   └── index.ts           # Centralized exports
+├── store/                 # State management
+│   └── index.ts           # Zustand store configuration
+└── views/                 # Feature-based view components
+    ├── app-sidebar/       # Sidebar navigation
+    ├── editor/            # SQL query editor
+    ├── export-data/       # Data export functionality
+    ├── header/            # Application header
+    ├── home/              # Home page
+    ├── layout/            # Layout wrapper
+    ├── query/             # Query execution view
+    └── query-results/     # Results display
+```
 
 ## ✨ Features
 
@@ -120,8 +158,8 @@ These features elevate the user experience and provide professional-grade functi
 ### 📦 Bundle Optimization
 
 - Standard optimizations: minification, tree shaking, gzipping
-- Application code: ~20KB optimized bundle
-- Separate vendor bundle for React, Router, Lucide (to take advantage of browser caching)
+- Application code: only ~`20KB` optimized bundle
+- Separate `vendor bundle` for React, Router, Lucide (to take advantage of browser caching)(refer `vite.config.ts`)
 
 ### 💡 Code-Level Performance
 
@@ -131,9 +169,7 @@ These features elevate the user experience and provide professional-grade functi
 
 ### 📊 Performance Measurement & Scalability
 
-- Performance is judged via lighthouse scores by running lighthouse audit
+- Performance is judged via `lighthouse scores` by running lighthouse audit
 - Pagination implemented for table data; huge lists can be easily rendered via List Virtualization(skipped for brevity)
-
-![Bundle Analysis](./assets/bundle.png)
 
 ![Lighthouse Audit](./assets/lighthouse.png)
