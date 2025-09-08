@@ -8,13 +8,12 @@ import { useParams } from "react-router";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { paginateData, generatePageNumbers } from "@/lib/pagination";
+import { paginateData } from "@/lib/pagination";
 
 function QueryResults({
   isLoading,
@@ -54,10 +53,9 @@ function QueryResults({
 
   const pageNumbers = useMemo(() => {
     if (!paginatedResult) return [];
-    return generatePageNumbers(
-      paginatedResult.pagination.currentPage,
-      paginatedResult.pagination.totalPages
-    );
+
+    const { totalPages } = paginatedResult.pagination;
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
   }, [paginatedResult]);
 
   useEffect(() => {
@@ -106,7 +104,9 @@ function QueryResults({
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious
-                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                onClick={() =>
+                  setCurrentPage((prev) => (prev > 1 ? prev - 1 : 1))
+                }
                 className={
                   !pagination.hasPrevPage
                     ? "pointer-events-none opacity-50"
@@ -115,19 +115,15 @@ function QueryResults({
               />
             </PaginationItem>
 
-            {pageNumbers.map((pageNum, index) => (
-              <PaginationItem key={index}>
-                {pageNum === "ellipsis" ? (
-                  <PaginationEllipsis />
-                ) : (
-                  <PaginationLink
-                    onClick={() => setCurrentPage(pageNum)}
-                    isActive={pageNum === pagination.currentPage}
-                    className='cursor-pointer'
-                  >
-                    {pageNum}
-                  </PaginationLink>
-                )}
+            {pageNumbers.map((pageNum) => (
+              <PaginationItem key={pageNum}>
+                <PaginationLink
+                  onClick={() => setCurrentPage(pageNum)}
+                  isActive={pageNum === pagination.currentPage}
+                  className='cursor-pointer'
+                >
+                  {pageNum}
+                </PaginationLink>
               </PaginationItem>
             ))}
 
@@ -135,7 +131,7 @@ function QueryResults({
               <PaginationNext
                 onClick={() =>
                   setCurrentPage((prev) =>
-                    Math.min(pagination.totalPages, prev + 1)
+                    prev < pagination.totalPages ? prev + 1 : prev
                   )
                 }
                 className={

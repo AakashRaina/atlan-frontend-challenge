@@ -8,7 +8,7 @@ export { addDays, toISO } from "./database";
 
 // Pagination utilities
 export type { PaginationState, PaginatedData } from "./pagination";
-export { paginateData, generatePageNumbers } from "./pagination";
+export { paginateData } from "./pagination";
 
 // Query utilities
 export { executeQuery } from "./query";
