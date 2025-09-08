@@ -21,6 +21,8 @@ const db = {
   order_items,
 };
 
+const TABLE_NAMES = Object.keys(db);
+
 /**
  * Executes a SQL query against mock data with a simulated delay
  * @param query - SQL query string
@@ -37,18 +39,18 @@ export async function executeQuery(query: string): Promise<{
   // Simulate network/database delay
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
-  // Extract all table names using regex
-  const fromRegex = /from\s+([a-zA-Z_][a-zA-Z0-9_]*)/gi;
-  const joinRegex = /join\s+([a-zA-Z_][a-zA-Z0-9_]*)/gi;
-
   const normalizedQuery = query.toLowerCase();
-  const fromMatches = [...normalizedQuery.matchAll(fromRegex)];
-  const joinMatches = [...normalizedQuery.matchAll(joinRegex)];
+  const foundTables: string[] = [];
 
-  // Get the last identified table name
-  const allMatches = [...fromMatches, ...joinMatches];
-  const lastMatch = allMatches[allMatches.length - 1];
-  const tableName = lastMatch ? lastMatch[1] : "customers"; // default to customers
+  for (const tableName of TABLE_NAMES) {
+    if (normalizedQuery.includes(tableName)) {
+      foundTables.push(tableName);
+    }
+  }
+
+  // Pick the last found table, or default to customers
+  const tableName =
+    foundTables.length > 0 ? foundTables[foundTables.length - 1] : "customers";
 
   // Get the data for the identified table
   const tableData = db[tableName as keyof typeof db] || db.customers;
